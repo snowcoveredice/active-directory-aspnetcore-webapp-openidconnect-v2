@@ -1,0 +1,24 @@
+﻿@using Newtonsoft.Json.Linq
+@{
+    ViewData["Title"] = "GroupAssign";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<h2>
+    Select a group
+</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Group</th>
+        <th>Desciption</th>
+    </tr>
+    @foreach (Microsoft.Graph.Group group in ViewData["Groups"] as List<Microsoft.Graph.Group>)
+    {
+        <tr>
+            <td><a href="@Url.Action("Group", "GroupAssign", new { groupId = group.Id }, null)">@group.DisplayName</a></td>
+            <td>@group.Description</td>
+        </tr>
+    }
+</table>

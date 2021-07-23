@@ -1,0 +1,28 @@
+﻿@using Newtonsoft.Json.Linq
+@{
+    ViewData["Title"] = "GroupAssign";
+    Microsoft.Graph.Group group = (Microsoft.Graph.Group)ViewData["Group"];
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<h2>
+    Members of group @group.DisplayName
+</h2>
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Display Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    @foreach (Microsoft.Graph.User user in group.Members)
+    {
+        <tr>
+            <td>@user.DisplayName</td>
+            <td>@user.GivenName</td>
+            <td>@user.Surname</td>
+        </tr>
+    }
+</table>
